@@ -23,7 +23,7 @@ Uwaga! Zadanie należy rozpocząć od obiektowego modelowania rozwiązania.
 # Zadanie 5 - Unit Tests
 1. Do poprzednio utworzonego kodu dodać testy jednostkowe.
 
-# Zadanie 6 - 
+# Zadanie 6 A
 1. Zidentyfikuj Code smells występujące w zadaniu 3 na podstawie https://refactoring.guru/pl/refactoring/smells
 2. Dokonaj refactoringu i popraw istniejące code smells z zadania 3 (jakie techniki zostały użyte https://refactoring.guru/pl/refactoring/techniques)
 
