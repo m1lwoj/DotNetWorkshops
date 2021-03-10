@@ -1,14 +1,16 @@
-# Zadanie 1 - Proceduralna implementacja TaxCalculator
+# OOP
+
+## Zadanie 1 - Proceduralna implementacja TaxCalculator
 
 1. Pobierz projekt TaxCalculator 
 2. Zmodyfikuj kod` TaxCalculator.Program.CalculateParams` tak aby wszystkie testy z `TaxCalculatorTest.TestTotalPriceCalculation` przeszły pomyślnie
 
-# Zadanie 2 - Obiektowa implementacja TaxCalculator
+## Zadanie 2 - Obiektowa implementacja TaxCalculator
 1. Zmodyfikuj kod z zadania 1, tak aby wykorzystać wszystkie cechy programowania obiektowego.
 Uzyj dziedziczenia, polimorfizmu, enkapsulacji i abstrakcji podczas implementacji.
 Pamiętaj o poprawnym wyniku testów.
 
-# Zadanie 3 - Obiektowe modelowanie problemu biznesowego
+## Zadanie 3 - Obiektowe modelowanie problemu biznesowego
 1. Zamodeluj obiektowo w C# grę w statki:
 - 2 graczy
 - plansza 10x10
@@ -17,17 +19,17 @@ Pamiętaj o poprawnym wyniku testów.
 
 Uwaga! Zadanie należy rozpocząć od obiektowego modelowania rozwiązania.
 
-# Zadanie 4 - SOLID
+## Zadanie 4 - SOLID
 1. Biorąc pod uwagę zasady SOLID zmodyfikuj Zadanie 3, tak aby wszystkie zasady SOLID były spełnione.
 
-# Zadanie 5 - Unit Tests
+## Zadanie 5 - Unit Tests
 1. Do poprzednio utworzonego kodu dodać testy jednostkowe.
 
-# Zadanie 6 A
+## Zadanie 6 A
 1. Zidentyfikuj Code smells występujące w zadaniu 3 na podstawie https://refactoring.guru/pl/refactoring/smells
 2. Dokonaj refactoringu i popraw istniejące code smells z zadania 3 (jakie techniki zostały użyte https://refactoring.guru/pl/refactoring/techniques)
 
-# Zadanie 6 B
+## Zadanie 6 B
 https://github.com/emilybache/Racing-Car-Katas
 
 # Wzorce Projektowe
