@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore TaxCalculator.sln
+      run: dotnet restore TaxCalculator/TaxCalculator.sln
     - name: Build
-      run: dotnet build --no-restore TaxCalculator.sln
+      run: dotnet build --no-restore TaxCalculator/TaxCalculator.sln
     - name: Test
-      run: dotnet test TaxCalculator.sln --no-build --verbosity normal
+      run: dotnet test TaxCalculator/TaxCalculator.sln --no-build --verbosity normal
