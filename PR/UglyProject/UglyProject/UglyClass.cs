@@ -10,7 +10,7 @@ namespace UglyProject
         {
             int a = 2;
 
-            int @int = a * 2 / 2; //zbędny komentarz
+            int @int = a * 2 / 2; //zbędny komentarz abc
 
             Console.WriteLine(@int);
         }
