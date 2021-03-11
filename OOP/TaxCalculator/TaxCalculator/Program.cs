@@ -32,19 +32,19 @@ public class Program
         
         if (product == "ibuprom")
         {
-            cena = quantity * (productPrice + (productPrice * lekarstwa) + (productPrice * totalImport));            
+            cena = quantity * (productPrice + (productPrice * lekarstwa) + totalImport);            
         }
         if (product == "watermelon")
         {
-            cena = quantity * (productPrice + (productPrice * owoce) + (productPrice * totalImport));
+            cena = quantity * (productPrice + (productPrice * owoce) + totalImport);
         }
         if (product == "chair")
         {
-            cena = quantity * (productPrice + (productPrice * meble) + (productPrice * totalImport));
+            cena = quantity * (productPrice + (productPrice * meble) + totalImport);
         }
         if (product == "laptop")
         {
-            cena = quantity * (productPrice + (productPrice * elektornika) + (productPrice * totalImport));
+            cena = quantity * (productPrice + (productPrice * elektornika) + totalImport);
         }
 
         return Math.Round(cena, 2);
