@@ -17,6 +17,36 @@ public class Program
     // import 10%
     public static decimal CalculateTotalPrice(string product, int quantity, decimal productPrice, bool isImported)
     {
-        return 1439.60M;
+        decimal cena = 0;
+        decimal import = 0.1M;
+        decimal lekarstwa = 0.05M;
+        decimal owoce = 0.08M;
+        decimal meble = 0.12M;
+        decimal elektornika = 0.23M;
+        decimal totalImport = 0;
+
+        if (isImported)
+        {
+            totalImport = productPrice * import;
+        }
+        
+        if (product == "ibuprom")
+        {
+            cena = quantity * (productPrice + (productPrice * lekarstwa) + (productPrice * totalImport));            
+        }
+        if (product == "watermelon")
+        {
+            cena = quantity * (productPrice + (productPrice * owoce) + (productPrice * totalImport));
+        }
+        if (product == "chair")
+        {
+            cena = quantity * (productPrice + (productPrice * meble) + (productPrice * totalImport));
+        }
+        if (product == "laptop")
+        {
+            cena = quantity * (productPrice + (productPrice * elektornika) + (productPrice * totalImport));
+        }
+
+        return Math.Round(cena, 2);
     }
 }
