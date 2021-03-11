@@ -10,6 +10,11 @@ public class Program
         Console.WriteLine("Hello World!");
     }
 
+    // lekarstwa 5%
+    // owoce 8%
+    // meble 12%
+    // elektronika 23%
+    // import 10%
     public static decimal CalculateTotalPrice(string product, int quantity, decimal productPrice, bool isImported)
     {
         return 1439.60M;
