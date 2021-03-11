@@ -12,7 +12,7 @@ namespace UglyProject
 
             int @int = a * 2 / 2; //zbędny komentarz
             int wynik = a / 2;
-
+            
             Console.WriteLine(@int);
             Console.WriteLine(wynik);
         }
