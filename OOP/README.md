@@ -23,14 +23,12 @@ Uwaga! Zadanie należy rozpocząć od obiektowego modelowania rozwiązania.
 1. Biorąc pod uwagę zasady SOLID zmodyfikuj Zadanie 3, tak aby wszystkie zasady SOLID były spełnione.
 
 ## Zadanie 5 - Unit Tests
-1. Do poprzednio utworzonego kodu dodać testy jednostkowe.
+1. Pobrać kod https://github.com/emilybache/Racing-Car-Katas
+2. Dodać testy jednostkowe
 
 ## Zadanie 6 A
 1. Zidentyfikuj Code smells występujące w zadaniu 3 na podstawie https://refactoring.guru/pl/refactoring/smells
 2. Dokonaj refactoringu i popraw istniejące code smells z zadania 3 (jakie techniki zostały użyte https://refactoring.guru/pl/refactoring/techniques)
-
-## Zadanie 6 B
-https://github.com/emilybache/Racing-Car-Katas
 
 # Wzorce Projektowe
 ## Zadanie 7
