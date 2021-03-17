@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using NorthwindData.Models;
 using System;
 using System.Collections.Generic;
+using Dapper;
 
 namespace NorthwindData
 {
@@ -63,6 +64,24 @@ namespace NorthwindData
 
         public List<Customer> GetCustomersByName(string name)
         {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Customer>(@"SELECT
+                                    [CustomerID]
+                                  ,[CompanyName]
+                                  ,[ContactName]
+                                  ,[ContactTitle]
+                                  ,[Address]
+                                  ,[City]
+                                  ,[Region]
+                                  ,[PostalCode]
+                                  ,[Country]
+                                  ,[Phone]
+                                  ,[Fax]
+                              FROM[Northwind].[dbo].[Customers]
+                                WHERE CompanyName LIKE @CompanyName", new { CompanyName = name }).AsList();
+            }
+
             var listCountryModel = new List<Customer>();
             try
             {

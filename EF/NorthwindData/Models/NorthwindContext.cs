@@ -15,6 +15,11 @@ namespace NorthwindData.Models
             _connectionString = config.GetConnectionString("Default");
         }
 
+        public NorthwindContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public NorthwindContext(DbContextOptions<NorthwindContext> options)
             : base(options)
         {

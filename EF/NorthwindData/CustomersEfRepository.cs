@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NorthwindData.Models
 {
-    public class CustomersEfRepository : ICustomersRepository
+    public class CustomersEfRepository 
     {
         private NorthwindContext _dbContext;
 
@@ -16,22 +16,29 @@ namespace NorthwindData.Models
 
         public void AddCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            _dbContext.Add(customer);
         }
 
         public void DeleteCustomer(string id)
         {
-            throw new NotImplementedException();
+            _dbContext.Remove(_dbContext.Customers
+                .Where(c => c.CustomerId == id));
         }
 
-        public List<Customer> GetAllCustomers()
+        public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _dbContext.SaveChanges();
         }
 
-        public List<Customer> GetCustomersByName(string name)
+        public IEnumerable<Customer> GetAllCustomers()
         {
-            throw new NotImplementedException();
+            return _dbContext.Customers.AsEnumerable();
+        }
+
+        public IEnumerable<Customer> GetCustomersByName(string name)
+        {
+            return _dbContext.Customers
+                .Where(c => c.ContactName == name).AsEnumerable();
         }
 
         public void UpdateCustomer(string id, Customer customer)
@@ -67,18 +74,17 @@ namespace NorthwindData.Models
         public void ToListVsIQueryable()
         {
             //in memory processing
-            var orders = _dbContext.Employees.ToList()
-                .Where(e => e.Orders.Sum(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity)) > 100000);
+            //var orders = _dbContext.Employees.ToList()
+            //    .Where(e => e.Orders.Sum(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity)) > 100000);
 
             //Exception
             //var orders3 = _dbContext.Employees
-            //    .Where(e => e.Orders.Sum(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity)) > 12)
+            //    .Where(e => e.Orders.Sum(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity)) > 100000)
             //    .ToList();
 
-            //db processing
-            var orders2 = _dbContext.Orders
-                .Where(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity) > 12)
-                .ToList();
+            ////db processing
+            //var orders2 = _dbContext.Orders
+            //    .Where(o => o.OrderDetails.Sum(s => s.UnitPrice * s.Quantity) > 12);
 
             //Complex query with workaround using SelectMany
             var employeeOrderDetails = _dbContext.Employees.Select(e => new

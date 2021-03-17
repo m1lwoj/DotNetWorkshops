@@ -3,6 +3,7 @@ using NorthwindData;
 using NorthwindData.Models;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace NorthwindConsoleUI
 {
@@ -13,12 +14,12 @@ namespace NorthwindConsoleUI
         static void Main(string[] args)
         {
             GetAppSettingsFile();
-            var customersRepo = new CustomersADONETRepository(_iconfiguration);
-
-            customersRepo.GetCustomersByName("Fran");
-            //var customersRepo2 = new CustomersEfRepository(new NorthwindContext(_iconfiguration));
-            //customersRepo2.GetEmployeesNPlus1();
-            //customersRepo2.ToListVsIQueryable();
+        
+            using(var dbContext = new NorthwindContext(_iconfiguration))
+            {
+                var customersRepo = new CustomersEfRepository(dbContext);
+                var allCustomers = customersRepo.GetAllCustomers();
+            }
 
             Console.ReadLine();
         }
