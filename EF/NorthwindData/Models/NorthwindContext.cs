@@ -35,10 +35,13 @@ namespace NorthwindData.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-                .UseSqlServer(_connectionString)
-                .UseLazyLoadingProxies();
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                    .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                    .UseSqlServer(_connectionString)
+                    .UseLazyLoadingProxies();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
