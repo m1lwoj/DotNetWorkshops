@@ -17,3 +17,7 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 ## Zadanie 3.
 1. Adekwatnie do Zadania 2. zrobić to samo używając entity framework (CustomersEfRepository)
+
+## Zadanie 4. 
+1. Dopisać testy do OrdersRepository (integracyjne i z bazą in memory, sprawdzające constrainty) ze scenariuszami odzczytu danych ale i dodawania nowych danych, pamiętając o wyczyszczeniu zmian po zakończeniu testów.
+2. Tak jak w 1. ale dla CustomersRepository
