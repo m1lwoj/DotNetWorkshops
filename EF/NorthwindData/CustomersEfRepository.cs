@@ -30,9 +30,16 @@ namespace NorthwindData.Models
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
-            return _dbContext.Customers.AsEnumerable();
+            //_dbContext.Configuration.LazyLoadingEnabled = false;
+            return _dbContext.Customers.Select(x => x).ToList();
+        }
+
+        public IEnumerable<Customer> GetNewestCustomers(int limit)
+        {
+            //_dbContext.Configuration.LazyLoadingEnabled = false;
+            return _dbContext.Customers.Take(limit).ToList();
         }
 
         public IEnumerable<Customer> GetCustomersByName(string name)

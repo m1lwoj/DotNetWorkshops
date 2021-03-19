@@ -23,5 +23,11 @@ namespace NorthwindDataTests.Integration
         {
            _ordersRepo.GetStatisticsForCurrentMonth();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            
+        }
     }
 }

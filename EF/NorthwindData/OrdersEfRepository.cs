@@ -13,9 +13,9 @@ namespace NorthwindData
         {
         }
 
-        public void AddOrder(Order customer)
+        public void AddOrder(Order order)
         {
-            _dbContext.Add(customer);
+            _dbContext.Add(order);
         }
 
         public void ChangeOrderStatus(Order customer)
@@ -48,6 +48,15 @@ namespace NorthwindData
                   .AsNoTracking()
                   .Include(a => a.OrderDetails)
                   .Where(a => a.OrderDate.HasValue && a.OrderDate.Value > from)
+                  .ToList();
+        }
+
+        public IEnumerable<Order> GetNewestOrders(int limit)
+        {
+            return _dbContext.Orders
+                  .OrderByDescending(x => x.OrderDate)
+                  .Include(a => a.OrderDetails)
+                  .Take(limit)
                   .ToList();
         }
     }
