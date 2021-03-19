@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NorthwindData\NorthwindData.csproj" />
+    <ProjectReference Include="..\NortwindBusinessLogic\NortwindBusinessLogic.csproj" />
   </ItemGroup>
 
 

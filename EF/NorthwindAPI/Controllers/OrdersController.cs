@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using NorthwindAPI.ViewModels;
 using NorthwindData;
 using NorthwindData.Models;
+using NortwindBusinessLogic;
 
 namespace NorthwindAPI.Controllers 
 {
@@ -21,6 +22,7 @@ namespace NorthwindAPI.Controllers
         private readonly IConfiguration _config;
         private readonly ProductsEfRepository _productsRepo;
         private readonly OrdersEfRepository _ordersRepo;
+        private readonly OrderService _orderService;
 
         public OrdersController(ILogger<CustomersController> logger, IConfiguration config)
         {
@@ -28,29 +30,19 @@ namespace NorthwindAPI.Controllers
             _config = config;
             _ordersRepo = new OrdersEfRepository(new NorthwindContext(config));
             _productsRepo = new ProductsEfRepository(new NorthwindContext(config));
+            _orderService = new OrderService(config);
         }
-        
+
         [HttpGet]
         public IActionResult Get(int limit)
             => Ok(_ordersRepo.GetNewestOrders(limit));
 
         [HttpPost]
-        public IActionResult Add(CreateOrderViewModel viewOrder)
+        public IActionResult Add(NortwindBusinessLogic.ViewModels.CreateOrderViewModel viewOrder)
         {
-            Order order = new Order();
-            order.CustomerId = viewOrder.CustomerId;
-            var products = viewOrder.Products.Select
-                (p => new OrderDetail()
-                {
-                    ProductId = p.ProductId,
-                    Quantity = p.Quantity,
-                    UnitPrice = _productsRepo.GetProdutct(p.ProductId).UnitPrice ?? 0M
-                }).ToList();
-                        
-            _ordersRepo.AddOrder(order);
-            _ordersRepo.SaveChanges();
+            var result = _orderService.CreateOrder(viewOrder);
 
-            return Created($"/orders/{order.OrderId}", order.OrderId);
+            return Created($"/orders/{result}", result.result);
         }
 
     }
