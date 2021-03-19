@@ -48,9 +48,11 @@ namespace NorthwindData.Models
                 .Where(c => c.ContactName == name).AsEnumerable();
         }
 
-        public void UpdateCustomer(string id, Customer customer)
+        public void UpdateCustomer(string id)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(_dbContext.Customers
+                .SingleOrDefault(c => c.CustomerId == id));
+            //throw new NotImplementedException();
         }
 
         public void GetEmployeesNPlus1()
