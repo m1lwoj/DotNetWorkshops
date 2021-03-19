@@ -21,15 +21,18 @@ namespace NortwindBusinessLogic
 
         public CreateOrderResults CreateOrder(CreateOrderViewModel viewOrder)
         {
-            //var productsOnStock = _productsRepo.GetProdutct(p => p.ProductId).UnitsInStock;
-                
+            var dbProducts = _productsRepo.GetProducts(viewOrder.Products.Select(p => p.ProductId));
+
+            ValidateProductsOnStock(dbProducts, viewOrder.Products);
+
             Order order = new Order();
+                       
             order.CustomerId = viewOrder.CustomerId;
             var products = viewOrder.Products.Select
                 (p => new OrderDetail()
                 {
                     ProductId = p.ProductId,
-                    UnitPrice = _productsRepo.GetProdutct(p.ProductId).UnitPrice ?? 0M,
+                    UnitPrice = dbProducts.Single(dbp => dbp.ProductId == p.ProductId).UnitPrice ?? 0M,
                     Quantity = p.Quantity,
                     Discount = SetDiscount(viewOrder.Products.Sum(p => p.Quantity))
                 }).ToList();
@@ -48,6 +51,19 @@ namespace NortwindBusinessLogic
             }
 
             return 0;
+        }
+
+        private void ValidateProductsOnStock(IEnumerable<Product> dbProducts, IEnumerable<ProductQuantityViewModel> productsToValidate)
+        {
+            foreach (var dbProduct in dbProducts)
+            {
+                var productToValidate = productsToValidate.Single(ptv => ptv.ProductId == dbProduct.ProductId);
+
+                if (dbProduct.UnitsInStock < productToValidate.Quantity)
+                {
+                    throw new OutOfStockException(dbProduct.ProductName);
+                }
+            }
         }
     }
 }

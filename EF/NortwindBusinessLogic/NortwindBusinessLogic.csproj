@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Exceptions\NewFile1.txt" />
+    <None Remove="Exceptions\OutOfStockException" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NorthwindData\NorthwindData.csproj" />

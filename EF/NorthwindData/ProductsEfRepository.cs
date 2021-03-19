@@ -17,5 +17,10 @@ namespace NorthwindData
         {
             return _dbContext.Products.Single(p => p.ProductId == productId);
         }
+
+        public IEnumerable<Product> GetProducts(IEnumerable<int> productIds)
+        {
+            return _dbContext.Products.Where(p => productIds.Any(pid => pid == p.ProductId));
+        }
     }
 }
