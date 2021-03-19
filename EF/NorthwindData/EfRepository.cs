@@ -2,7 +2,7 @@
 
 namespace NorthwindData
 {
-    public abstract class EfRepository
+    public abstract class EfRepository : IRepository
     {
         protected NorthwindContext _dbContext;
 

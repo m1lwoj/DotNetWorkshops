@@ -16,21 +16,28 @@ namespace NorthwindAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    //Dependency inversion
+    //[D] SOLI[D]
     public class OrdersController : ControllerBase
     {
         private readonly ILogger<CustomersController> _logger;
         private readonly IConfiguration _config;
-        private readonly ProductsEfRepository _productsRepo;
-        private readonly OrdersEfRepository _ordersRepo;
-        private readonly OrderService _orderService;
+        private readonly IProductsRepository _productsRepo;
+        private readonly IOrdersRepository _ordersRepo;
+        private readonly IOrderService _orderService;
 
-        public OrdersController(ILogger<CustomersController> logger, IConfiguration config)
+        public OrdersController(
+            ILogger<CustomersController> logger,
+            IConfiguration config, 
+            IProductsRepository productsRepo,
+            IOrdersRepository ordersRepository,
+            IOrderService orderService)
         {
             _logger = logger;
             _config = config;
-            _ordersRepo = new OrdersEfRepository(new NorthwindContext(config));
-            _productsRepo = new ProductsEfRepository(new NorthwindContext(config));
-            _orderService = new OrderService(config);
+            _ordersRepo = ordersRepository;
+            _productsRepo = productsRepo;
+            _orderService = orderService;
         }
 
         [HttpGet]

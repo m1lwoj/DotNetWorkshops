@@ -9,11 +9,11 @@ using System.Text;
 
 namespace NortwindBusinessLogic
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IProductsRepository _productsRepo;
         private readonly IOrdersRepository _ordersRepo;
-        
+
         //SOLI [D] - 
         //
         // Dependecy Inversion - IoC
@@ -32,7 +32,7 @@ namespace NortwindBusinessLogic
             new ProductsOnStockValidator().Validate(dbProducts, viewOrder.Products);
 
             Order order = new Order();
-                       
+
             order.CustomerId = viewOrder.CustomerId;
             var products = viewOrder.Products.Select
                 (p => new OrderDetail()
@@ -40,11 +40,11 @@ namespace NortwindBusinessLogic
                     ProductId = p.ProductId,
                     UnitPrice = dbProducts.Single(dbp => dbp.ProductId == p.ProductId).UnitPrice ?? 0M,
                     Quantity = p.Quantity,
-                    Discount = new OrderDiscountCalculator().SetDiscount(viewOrder.Products.Sum(p => p.Quantity))
+                    Discount = new OrderDiscountCalculator(1).SetDiscount(viewOrder.Products.Sum(p => p.Quantity))
                 }).ToList();
 
             _ordersRepo.AddOrder(order);
-            _ordersRepo.SaveChanges();
+            //_ordersRepo.SaveChanges();
 
             return new CreateOrderResults() { result = order.OrderId.ToString() };
         }

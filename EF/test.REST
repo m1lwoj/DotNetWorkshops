@@ -18,10 +18,11 @@ Content-Type: application/json
 GET {{url}}/customers/newest?limit=100 HTTP/1.1
 
 ###komentarz
-POST {{url}}/orders/add
+POST {{url}}/orders
 Content-Type: application/json 
+
 {
-    "CustomerId": 1,
+    "CustomerId": "BLAUS",
     "Products":
     [
         { 
@@ -35,3 +36,23 @@ Content-Type: application/json
 
     ]
 }
+
+###komentarz
+
+POST {{url}}/login
+Content-Type: application/json 
+
+{
+    "userName": "test2@test.com",
+    "password": "password2"
+}
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJuYmYiOjE2MTYxNTk1MTEsImV4cCI6MTYxNjI0NTkxMSwiaWF0IjoxNjE2MTU5NTExLCJpc3MiOiJub3J0aHdpbmRBUEkiLCJhdWQiOiJub3J0aHdpbmRDbGllbnQifQ.Z3w062n8nPeiUZtyO_96tlPiAE88mMOK7SwBEaK2EZI
+###komentarz
+GET {{url}}/weatherforecast
+Authorization: bearer {{token}}
+
+###komentarz
+GET {{url}}/weatherforecast/get2
+Authorization: bearer {{token}}
+

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NorthwindData
 {
-    public interface IOrdersRepository
+    public interface IOrdersRepository : IRepository
     {
         void AddOrder(Order order);
         void ChangeOrderStatus(Order customer);
