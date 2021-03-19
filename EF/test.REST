@@ -1,0 +1,37 @@
+@url = https://localhost:44385
+
+###komentarz
+GET {{url}}/weatherforecast HTTP/1.1
+
+###komentarz
+GET {{url}}/customers HTTP/1.1
+
+###komentarz
+POST {{url}}/statistics
+Content-Type: application/json 
+
+{
+    "FullCalculation": "true",
+}
+
+###komentarz
+GET {{url}}/customers/newest?limit=100 HTTP/1.1
+
+###komentarz
+POST {{url}}/orders/add
+Content-Type: application/json 
+{
+    "CustomerId": 1,
+    "Products":
+    [
+        { 
+            "ProductId" : 1,
+            "Quantity" : 10
+        },
+        { 
+            "ProductId" : 76,
+            "Quantity" : 10
+        }
+
+    ]
+}
