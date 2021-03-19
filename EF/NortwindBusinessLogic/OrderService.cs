@@ -31,20 +31,23 @@ namespace NortwindBusinessLogic
                     ProductId = p.ProductId,
                     UnitPrice = _productsRepo.GetProdutct(p.ProductId).UnitPrice ?? 0M,
                     Quantity = p.Quantity,
+                    Discount = SetDiscount(viewOrder.Products.Sum(p => p.Quantity))
                 }).ToList();
 
             _ordersRepo.AddOrder(order);
             _ordersRepo.SaveChanges();
 
-            return new CreateOrderResults() { result = order.OrderId };
+            return new CreateOrderResults() { result = order.OrderId.ToString() };
         }
 
-        //private decimal AddDiscount(decimal price, short quantity)
-        //{
-        //    if (quantity )
-        //    {
+        private float SetDiscount(int quantity)
+        {
+            if (quantity > 100)
+            {
+                return 0.1f;
+            }
 
-        //    }
-        //}
+            return 0;
+        }
     }
 }
