@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NorthwindData
 {
-    public class ProductsEfRepository : EfRepository
+    public class ProductsEfRepository : EfRepository, IProductsRepository
     {
         public ProductsEfRepository(NorthwindContext dbContext) : base(dbContext)
         {

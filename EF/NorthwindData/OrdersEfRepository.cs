@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NorthwindData
 {
-    public class OrdersEfRepository : EfRepository
+    public class OrdersEfRepository : EfRepository, IOrdersRepository
     {
         public OrdersEfRepository(NorthwindContext dbContext) : base(dbContext)
         {
